@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appdeployment
+  labels:
+    app: next-result
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app: next-result
+  template:
+    metadata:
+      labels:
+        app: next-result
+    spec:
+      containers:
+      - name: next-result
+        image: {{ .Values.appdeployment.image.repository }}:{{ .Values.appdeployment.image.tag }} 
+        ports:
+        - containerPort: 3000
+        env:
+          {{- toYaml .Values.env | nindent 10 }}
+
