@@ -1,0 +1,9 @@
+dbDeployment:
+  replicas: 1
+  image:
+    repository: mongo
+    tag: latest
+  service:
+    containerPort: 27017
+
+

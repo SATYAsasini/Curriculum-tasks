@@ -1,0 +1,26 @@
+appdeployment:
+  replicas: 3
+  image:
+    repository: satyasasini/next-resultzz
+    tag: v1
+  service:
+    name: appdeployment
+    labels:
+      app: appdeployment
+    containerPort: 3000
+
+appservice:
+  name: appservice
+  ports:
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+    nodePort: 31000
+
+env:
+  - name: PORT
+    value: "3000"
+  - name: MONGODB_URL
+    value: "mongodb://dbservice:27017"
+  - name: SECRET
+    value: "VASCODAGAMA"
